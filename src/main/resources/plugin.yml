@@ -1,0 +1,5 @@
+name: SquidGame
+version: '${project.version}'
+main: we_sense.squid_game.SquidGame
+api-version: 1.17
+authors: [ ISenseToxicity, ISenseHostility ]
