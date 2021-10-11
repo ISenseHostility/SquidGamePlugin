@@ -3,7 +3,6 @@ package we_sense.squid_game.redlight;
 import org.bukkit.ChatColor;
 import org.bukkit.Server;
 import org.bukkit.entity.Player;
-import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 import we_sense.squid_game.SquidGame;
 import we_sense.squid_game.runnables.RLGLRunnable;
@@ -36,6 +35,8 @@ public class RedLightGreenLight {
         if (!ongoing) {
             task = new RLGLRunnable(activePlayers, server).runTaskTimer(squidGame, squidGameUtil.secondsToTicks(5), squidGameUtil.secondsToTicks(squidGameUtil.randomIntBetween(5, 12)));
             ongoing = true;
+            BossBarTimerHandler bossBarTimerHandler = new BossBarTimerHandler(activePlayers,120);
+        }
         }
         this.server = this.squidGame.getServer();
         BossBarTimerHandler bossBarTimerHandler = new BossBarTimerHandler();
