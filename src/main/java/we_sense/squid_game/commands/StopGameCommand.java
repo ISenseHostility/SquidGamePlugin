@@ -15,7 +15,7 @@ public class StopGameCommand implements CommandExecutor {
             if (args.length == 1) {
                 if (sender.hasPermission("squid_game.stop")) {
                     switch (args[0]) {
-                        case "red_light_green_light":
+                        case "1":
                             RedLightGreenLight.getInstance().stopRedLightGreenLight();
                             for (Player p : RedLightGreenLight.getInstance().getActivePlayers()) {
                                 p.sendMessage(ChatColor.GREEN + "Red Light Green Light has been started.");

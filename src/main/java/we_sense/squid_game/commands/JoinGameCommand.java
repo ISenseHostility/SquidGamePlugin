@@ -16,7 +16,7 @@ public class JoinGameCommand implements CommandExecutor {
                 if (sender.hasPermission("squid_game.join")) {
                     Player player = (Player) sender;
                     switch (args[0]) {
-                        case "red_light_green_light":
+                        case "1":
                             RedLightGreenLight.getInstance().getActivePlayers().add(player);
                             sender.sendMessage(ChatColor.GREEN + "Joined Red Light Green Light.");
                             return true;

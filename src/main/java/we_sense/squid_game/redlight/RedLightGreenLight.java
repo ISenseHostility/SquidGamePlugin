@@ -5,6 +5,7 @@ import org.bukkit.Server;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import we_sense.squid_game.SquidGame;
+import we_sense.squid_game.handler.BossBarTimerHandler;
 import we_sense.squid_game.utils.SquidGameUtil;
 
 import java.util.ArrayList;
@@ -29,9 +30,10 @@ public class RedLightGreenLight {
     }
 
     public void startRedLightGreenLight() {
+        this.server = this.squidGame.getServer();
+        BossBarTimerHandler bossBarTimerHandler = new BossBarTimerHandler(activePlayers,120);
         runnable.runTaskTimer(squidGame, squidGameUtil.secondsToTicks(5), squidGameUtil.secondsToTicks(squidGameUtil.randomIntBetween(5, 12)));
         ongoing = true;
-        this.server = this.squidGame.getServer();
     }
 
     public void stopRedLightGreenLight() {

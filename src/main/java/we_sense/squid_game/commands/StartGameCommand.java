@@ -17,7 +17,7 @@ public class StartGameCommand implements CommandExecutor {
             if (args.length == 1) {
                 if (sender.hasPermission("squid_game.start")) {
                     switch (args[0]) {
-                        case "red_light_green_light":
+                        case "1":
                             ArrayList<Player> activePlayers = RedLightGreenLight.getInstance().getActivePlayers();
                             if (activePlayers.size() != 0) {
                                 RedLightGreenLight.getInstance().startRedLightGreenLight();
