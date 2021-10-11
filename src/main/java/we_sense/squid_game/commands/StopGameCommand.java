@@ -18,7 +18,7 @@ public class StopGameCommand implements CommandExecutor {
                         case "1":
                             RedLightGreenLight.getInstance().stopRedLightGreenLight();
                             for (Player p : RedLightGreenLight.getInstance().getActivePlayers()) {
-                                p.sendMessage(ChatColor.GREEN + "Red Light Green Light has been started.");
+                                p.sendMessage(ChatColor.GREEN + "Red Light Green Light has been stopped.");
                             }
                             if (!RedLightGreenLight.getInstance().getActivePlayers().contains(sender)) {
                                 sender.sendMessage(ChatColor.GREEN + "Red Light Green Light has been stopped.");

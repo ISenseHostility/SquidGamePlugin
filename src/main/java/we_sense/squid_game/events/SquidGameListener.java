@@ -16,7 +16,7 @@ public class SquidGameListener implements Listener {
                 boolean mayMove = redLightGreenLight.isMayMove();
                 Player player = event.getPlayer();
 
-                if (mayMove) {
+                if (!mayMove) {
                     if (redLightGreenLight.getActivePlayers().contains(player)) {
                         player.setHealth(0);
                         redLightGreenLight.getActivePlayers().remove(player);
