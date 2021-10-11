@@ -10,13 +10,26 @@ public class RedLightGreenLight {
     private final SquidGameUtil squidGameUtil = new SquidGameUtil();
     private final SquidGame squidGame = SquidGame.getInstance();
     private boolean mayMove = true;
-    private final Server server;
+    private Server server;
+    public static RedLightGreenLight instance;
 
+    public static RedLightGreenLight getInstance() {
+        if (instance == null) {
+            instance = new RedLightGreenLight();
+        }
+        return instance;
+    }
 
+    private RedLightGreenLight() {
+    }
 
-    public RedLightGreenLight() {
+    public void startRedLightGreenLight() {
         runnable.runTaskTimer(squidGame.getJavaPlugin(), squidGameUtil.secondsToTicks(5), squidGameUtil.secondsToTicks(squidGameUtil.randomIntBetween(5, 12)));
         this.server = this.squidGame.getServer();
+    }
+
+    public void stopRedLightGreenLight() {
+        runnable.cancel();
     }
 
     BukkitRunnable runnable = new BukkitRunnable() {
@@ -40,5 +53,9 @@ public class RedLightGreenLight {
                 squidGameUtil.sendTitle(player,"START");
             }
         }
+    }
+
+    public boolean isMayMove() {
+        return mayMove;
     }
 }

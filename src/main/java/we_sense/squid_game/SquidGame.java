@@ -20,7 +20,7 @@ public final class SquidGame extends JavaPlugin {
     public void onEnable() {
         instance = this;
         this.server = this.getServer();
-        RedLightGreenLight redLightGreenLight = new RedLightGreenLight();
+        RedLightGreenLight.getInstance().startRedLightGreenLight();
     }
 
     @Override
