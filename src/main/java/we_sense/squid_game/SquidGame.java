@@ -1,48 +1,33 @@
 package we_sense.squid_game;
 
 import org.bukkit.Server;
-import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.scheduler.BukkitRunnable;
+import we_sense.squid_game.redlight.RedLightGreenLight;
 
 import java.util.concurrent.ThreadLocalRandom;
 
 public final class SquidGame extends JavaPlugin {
+    private static SquidGame instance;
     private Server server;
-    private boolean mayMove = true;
+    private final JavaPlugin javaPlugin = this;
+    public SquidGame(){}
+
+    public static SquidGame getInstance(){
+        return instance;
+    }
 
     @Override
     public void onEnable() {
+        instance = this;
         this.server = this.getServer();
-        runnable.runTaskTimer(this, secondsToTicks(5), secondsToTicks(randomIntBetween(15, 30)));
+        RedLightGreenLight redLightGreenLight = new RedLightGreenLight();
     }
 
     @Override
     public void onDisable() {
-
     }
 
-    BukkitRunnable runnable = new BukkitRunnable() {
-        @Override
-        public void run() {
-            if (server.getOnlinePlayers().size() != 0) {
-                Player player = (Player) server.getOnlinePlayers().toArray()[0];
-                if (mayMove) {
-                    mayMove = false;
-                    player.sendMessage("false");
-                } else {
-                    mayMove = true;
-                    player.sendMessage("true");
-                }
-            }
-        }
-    };
-
-    public static int randomIntBetween(int min, int max) {
-        return ThreadLocalRandom.current().nextInt(min, max);
-    }
-
-    public static int secondsToTicks(int seconds) {
-        return seconds * 20;
+    public JavaPlugin getJavaPlugin() {
+        return javaPlugin;
     }
 }
