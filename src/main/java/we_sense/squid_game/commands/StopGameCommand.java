@@ -11,25 +11,30 @@ public class StopGameCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (label.equals("stop_game")) {
-            if (sender instanceof Player) {
-                if (args.length == 1) {
-                    if (sender.hasPermission("squid_game.stop")) {
-                        switch (args[0]) {
-                            case "red_light_green_light":
-                                RedLightGreenLight.getInstance().stopRedLightGreenLight();
-                                for (Player p : RedLightGreenLight.getInstance().getActivePlayers()) {
-                                    p.sendMessage(ChatColor.GREEN + "Red Light Green Light has been started.");
-                                }
-                                if (!RedLightGreenLight.getInstance().getActivePlayers().contains(sender)) {
-                                    sender.sendMessage(ChatColor.GREEN + "Red Light Green Light has been stopped.");
-                                }
-                                return true;
-                            case "2":
-                                return false;
-                        }
+        if (sender instanceof Player) {
+            if (args.length == 1) {
+                if (sender.hasPermission("squid_game.stop")) {
+                    switch (args[0]) {
+                        case "red_light_green_light":
+                            RedLightGreenLight.getInstance().stopRedLightGreenLight();
+                            for (Player p : RedLightGreenLight.getInstance().getActivePlayers()) {
+                                p.sendMessage(ChatColor.GREEN + "Red Light Green Light has been started.");
+                            }
+                            if (!RedLightGreenLight.getInstance().getActivePlayers().contains(sender)) {
+                                sender.sendMessage(ChatColor.GREEN + "Red Light Green Light has been stopped.");
+                            }
+                            return true;
+                        default:
+                            sender.sendMessage(ChatColor.RED + "That game does not exist.");
+                            return true;
                     }
+                } else {
+                    sender.sendMessage(ChatColor.RED + "You don't have permission to stop games.");
+                    return true;
                 }
+            } else {
+                sender.sendMessage(ChatColor.RED + "This command only accepts a single argument.");
+                return false;
             }
         }
         return false;
