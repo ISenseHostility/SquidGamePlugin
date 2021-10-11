@@ -43,7 +43,7 @@ public class BossBarTimerHandler {
                 for(Player player : players){
                     player.setHealth(0);
                     //todo remove killed players
-                    bossBar = null;
+                    bossBar.removeAll();
                     bossBarUpdatRunnable.cancel();
                 }
             }
