@@ -3,3 +3,16 @@ version: '${project.version}'
 main: we_sense.squid_game.SquidGame
 api-version: 1.17
 authors: [ ISenseToxicity, ISenseHostility ]
+
+commands:
+  join_game:
+    usage: /join_game <game>
+    permission: squid_game.join
+
+  start_game:
+    usage: /start_game <game>
+    permission: squid_game.start
+
+  stop_game:
+    usage: /stop_game <game>
+    permission: squid_game.stop
