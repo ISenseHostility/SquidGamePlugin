@@ -18,7 +18,7 @@ public class SquidGameListener implements Listener {
 
                 if (mayMove) {
                     if (redLightGreenLight.getActivePlayers().contains(player)) {
-                        player.damage(Integer.MAX_VALUE);
+                        player.setHealth(0);
                         redLightGreenLight.getActivePlayers().remove(player);
                     }
                 }
