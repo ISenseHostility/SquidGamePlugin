@@ -3,6 +3,7 @@ package we_sense.squid_game.rlgl;
 import org.bukkit.ChatColor;
 import org.bukkit.Server;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.java.JavaPlugin;
 import we_sense.squid_game.SquidGame;
 import we_sense.squid_game.handler.BossBarTimerHandler;
 import we_sense.squid_game.utils.SquidGameUtil;
@@ -11,7 +12,7 @@ import java.util.ArrayList;
 
 public class RedLightGreenLight {
     private final SquidGameUtil squidGameUtil = new SquidGameUtil();
-    private final SquidGame squidGame = SquidGame.getInstance();
+    private final SquidGame squidGame = JavaPlugin.getPlugin(SquidGame.class);
     private boolean mayMove = false;
     private boolean ongoing = false;
     private final BossBarTimerHandler bossBarTimerHandler = new BossBarTimerHandler();

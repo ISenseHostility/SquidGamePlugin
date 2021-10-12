@@ -5,7 +5,9 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.event.player.PlayerRespawnEvent;
 import we_sense.squid_game.rlgl.RedLightGreenLight;
+import we_sense.squid_game.rlgl.RlglLocation;
 import we_sense.squid_game.utils.SquidGameUtil;
 
 public class SquidGameListener implements Listener {
@@ -36,8 +38,14 @@ public class SquidGameListener implements Listener {
         Player player = event.getEntity().getPlayer();
         if (player != null) {
             if (squidGameUtil.getDeathByPlugin(player) == 1) {
-                event.setDeathMessage(event.getEntity().getDisplayName() + " was shot in the " + squidGameUtil.getRandomBodyPart() + ".");
+                event.setDeathMessage(player.getDisplayName() + " was shot in the " + squidGameUtil.getRandomBodyPart() + ".");
             }
         }
+    }
+
+    @EventHandler
+    public void onPlayerRespawn(final PlayerRespawnEvent event){
+        RlglLocation rlglLocation = new RlglLocation();
+       event.setRespawnLocation(rlglLocation.getSpectaterLocation());
     }
 }
