@@ -51,13 +51,13 @@ public class BossBarTimerHandler {
             double percentage = currentTime / time;
             bossBar.setProgress(percentage);
             switch ((int) currentTime){
-                case 75:
+                case 80:
                     bossBar.setColor(BarColor.BLUE);
                     break;
-                case 50:
+                case 40:
                     bossBar.setColor(BarColor.YELLOW);
                     break;
-                case 25:
+                case 20:
                     bossBar.setColor(BarColor.RED);
                     break;
                 case 0:

@@ -20,12 +20,17 @@ public class StartGameCommand implements CommandExecutor {
 
                     switch (args[0]) {
                         case "1":
-                            ArrayList<Player> activePlayers = RLGL.getActivePlayers();
-                            if (activePlayers.size() != 0) {
-                                RLGL.startRedLightGreenLight();
-                                for (Player p : activePlayers) {
-                                    p.sendMessage(ChatColor.GREEN + "Red Light Green Light has been started.");
+                            if (!RLGL.isOngoing()) {
+                                ArrayList<Player> activePlayers = RLGL.getActivePlayers();
+                                if (activePlayers.size() != 0) {
+                                    RLGL.startRedLightGreenLight();
+                                    for (Player p : activePlayers) {
+                                        p.sendMessage(ChatColor.GREEN + "Red Light Green Light has been started.");
+                                    }
+                                    return true;
                                 }
+                            } else {
+                                sender.sendMessage(ChatColor.RED + "Red Light Green Light has already started.");
                                 return true;
                             }
                         default:

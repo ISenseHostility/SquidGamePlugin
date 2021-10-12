@@ -19,9 +19,14 @@ public class JoinGameCommand implements CommandExecutor {
 
                     switch (args[0]) {
                         case "1":
-                            RLGL.getActivePlayers().add(player);
-                            sender.sendMessage(ChatColor.GREEN + "Joined Red Light Green Light.");
-                            return true;
+                            if (!RLGL.isOngoing()) {
+                                RLGL.getActivePlayers().add(player);
+                                sender.sendMessage(ChatColor.GREEN + "Joined Red Light Green Light.");
+                                return true;
+                            }  else {
+                                sender.sendMessage(ChatColor.RED + "Red Light Green Light has already started.");
+                                return true;
+                            }
                         default:
                             sender.sendMessage(ChatColor.RED + "That game does not exist.");
                             return true;

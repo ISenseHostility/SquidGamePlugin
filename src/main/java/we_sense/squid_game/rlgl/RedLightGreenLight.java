@@ -3,7 +3,6 @@ package we_sense.squid_game.rlgl;
 import org.bukkit.ChatColor;
 import org.bukkit.Server;
 import org.bukkit.entity.Player;
-import org.bukkit.scheduler.BukkitTask;
 import we_sense.squid_game.SquidGame;
 import we_sense.squid_game.handler.BossBarTimerHandler;
 import we_sense.squid_game.utils.SquidGameUtil;
@@ -19,7 +18,6 @@ public class RedLightGreenLight {
     private final Server server = squidGame.getServer();
     private final ArrayList<Player> activePlayers = new ArrayList<>();
     private static RedLightGreenLight instance;
-    private BukkitTask task;
 
     public static RedLightGreenLight getInstance() {
         if (instance == null) {
@@ -78,10 +76,6 @@ public class RedLightGreenLight {
 
     public boolean isMayMove() {
         return mayMove;
-    }
-
-    public void setMayMove(boolean mayMove) {
-        this.mayMove = mayMove;
     }
 
     public ArrayList<Player> getActivePlayers() {

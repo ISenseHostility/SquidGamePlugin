@@ -29,20 +29,28 @@ public class SquidGameUtil {
         return new NamespacedKey(squidGame ,name);
     }
 
-    public void setDeathByPlugin(Player player, int on) {
+    public void setPlayerData(Player player, String dataName, PersistentDataType dataType, Object value) {
         player.getPersistentDataContainer().set(
-                    getKey("wasKilledByPlugin"),
-                    PersistentDataType.INTEGER,
-                    on
-                );
+                getKey(dataName),
+                dataType,
+                value
+        );
+    }
+
+    public Object getPlayerData(Player player, String dataName, PersistentDataType dataType) {
+        return player.getPersistentDataContainer().get(
+                getKey(dataName),
+                dataType
+        );
+    }
+
+    public void setDeathByPlugin(Player player, int on) {
+        setPlayerData(player, "waKilledByPlugin", PersistentDataType.INTEGER, on);
     }
 
     public int getDeathByPlugin(Player player) {
-        if (player.getPersistentDataContainer().get(getKey("wasKilledByPlugin"), PersistentDataType.INTEGER) != null) {
-            return player.getPersistentDataContainer().get(
-                    getKey("wasKilledByPlugin"),
-                    PersistentDataType.INTEGER
-            );
+        if (getPlayerData(player, "wasKilledByPlugin", PersistentDataType.INTEGER) != null) {
+            return (int) getPlayerData(player, "wasKilledByPlugin", PersistentDataType.INTEGER);
         } else {
             return 0;
         }
