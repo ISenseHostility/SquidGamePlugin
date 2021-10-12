@@ -4,7 +4,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
-import we_sense.squid_game.redlight.RedLightGreenLight;
+import we_sense.squid_game.rlgl.RedLightGreenLight;
 
 public class SquidGameListener implements Listener {
 

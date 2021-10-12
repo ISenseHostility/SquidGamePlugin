@@ -5,7 +5,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import we_sense.squid_game.redlight.RedLightGreenLight;
+import we_sense.squid_game.rlgl.RedLightGreenLight;
 
 import java.util.ArrayList;
 
@@ -16,11 +16,13 @@ public class StartGameCommand implements CommandExecutor {
         if (sender instanceof Player) {
             if (args.length == 1) {
                 if (sender.hasPermission("squid_game.start")) {
+                    RedLightGreenLight RLGL = RedLightGreenLight.getInstance();
+
                     switch (args[0]) {
                         case "1":
-                            ArrayList<Player> activePlayers = RedLightGreenLight.getInstance().getActivePlayers();
+                            ArrayList<Player> activePlayers = RLGL.getActivePlayers();
                             if (activePlayers.size() != 0) {
-                                RedLightGreenLight.getInstance().startRedLightGreenLight();
+                                RLGL.startRedLightGreenLight();
                                 for (Player p : activePlayers) {
                                     p.sendMessage(ChatColor.GREEN + "Red Light Green Light has been started.");
                                 }
@@ -38,7 +40,9 @@ public class StartGameCommand implements CommandExecutor {
                 sender.sendMessage(ChatColor.RED + "This command only accepts a single argument.");
                 return false;
             }
+        } else {
+            sender.sendMessage(ChatColor.RED + "This command can only be used by players.");
+            return true;
         }
-        return false;
     }
 }

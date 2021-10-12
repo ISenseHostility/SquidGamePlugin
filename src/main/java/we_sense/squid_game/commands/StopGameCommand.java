@@ -5,7 +5,8 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import we_sense.squid_game.redlight.RedLightGreenLight;
+import we_sense.squid_game.handler.BossBarTimerHandler;
+import we_sense.squid_game.rlgl.RedLightGreenLight;
 
 public class StopGameCommand implements CommandExecutor {
 
@@ -14,15 +15,18 @@ public class StopGameCommand implements CommandExecutor {
         if (sender instanceof Player) {
             if (args.length == 1) {
                 if (sender.hasPermission("squid_game.stop")) {
+                    RedLightGreenLight RLGL = RedLightGreenLight.getInstance();
+
                     switch (args[0]) {
                         case "1":
-                            RedLightGreenLight.getInstance().stopRedLightGreenLight();
-                            for (Player p : RedLightGreenLight.getInstance().getActivePlayers()) {
+                            RLGL.stopRedLightGreenLight();
+                            for (Player p : RLGL.getActivePlayers()) {
                                 p.sendMessage(ChatColor.GREEN + "Red Light Green Light has been stopped.");
                             }
-                            if (!RedLightGreenLight.getInstance().getActivePlayers().contains(sender)) {
+                            if (!RLGL.getActivePlayers().contains(sender)) {
                                 sender.sendMessage(ChatColor.GREEN + "Red Light Green Light has been stopped.");
                             }
+                            RLGL.getBossBarTimerHandler().getBossBar().removeAll();
                             return true;
                         default:
                             sender.sendMessage(ChatColor.RED + "That game does not exist.");
@@ -36,7 +40,9 @@ public class StopGameCommand implements CommandExecutor {
                 sender.sendMessage(ChatColor.RED + "This command only accepts a single argument.");
                 return false;
             }
+        } else {
+            sender.sendMessage(ChatColor.RED + "This command can only be used by players.");
+            return true;
         }
-        return false;
     }
 }

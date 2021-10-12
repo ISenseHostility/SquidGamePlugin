@@ -5,7 +5,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import we_sense.squid_game.redlight.RedLightGreenLight;
+import we_sense.squid_game.rlgl.RedLightGreenLight;
 
 public class JoinGameCommand implements CommandExecutor {
 
@@ -15,9 +15,11 @@ public class JoinGameCommand implements CommandExecutor {
             if (args.length == 1) {
                 if (sender.hasPermission("squid_game.join")) {
                     Player player = (Player) sender;
+                    RedLightGreenLight RLGL = RedLightGreenLight.getInstance();
+
                     switch (args[0]) {
                         case "1":
-                            RedLightGreenLight.getInstance().getActivePlayers().add(player);
+                            RLGL.getActivePlayers().add(player);
                             sender.sendMessage(ChatColor.GREEN + "Joined Red Light Green Light.");
                             return true;
                         default:
@@ -32,7 +34,9 @@ public class JoinGameCommand implements CommandExecutor {
                 sender.sendMessage(ChatColor.RED + "This command only accepts a single argument.");
                 return false;
             }
+        } else {
+            sender.sendMessage(ChatColor.RED + "This command can only be used by players.");
+            return true;
         }
-        return false;
     }
 }
