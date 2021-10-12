@@ -1,11 +1,14 @@
 package we_sense.squid_game.commands;
 
 import org.bukkit.ChatColor;
+import org.bukkit.boss.BossBar;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import we_sense.squid_game.rlgl.RedLightGreenLight;
+
+import java.util.ArrayList;
 
 public class StopGameCommand implements CommandExecutor {
 
@@ -26,6 +29,7 @@ public class StopGameCommand implements CommandExecutor {
                                 sender.sendMessage(ChatColor.GREEN + "Red Light Green Light has been stopped.");
                             }
                             RLGL.getBossBarTimerHandler().getBossBar().removeAll();
+                            RLGL.getBossBarTimerHandler().getBossBarUpdateRedLightGreenLightRunnable().cancel();
                             return true;
                         default:
                             sender.sendMessage(ChatColor.RED + "That game does not exist.");
@@ -44,4 +48,9 @@ public class StopGameCommand implements CommandExecutor {
             return true;
         }
     }
+
+    private void stopGame(BossBar timer, ArrayList<Player> players) {
+
+    }
+
 }

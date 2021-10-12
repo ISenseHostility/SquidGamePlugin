@@ -45,7 +45,7 @@ public class SquidGameUtil {
     }
 
     public void setDeathByPlugin(Player player, int on) {
-        setPlayerData(player, "waKilledByPlugin", PersistentDataType.INTEGER, on);
+        setPlayerData(player, "wasKilledByPlugin", PersistentDataType.INTEGER, on);
     }
 
     public int getDeathByPlugin(Player player) {

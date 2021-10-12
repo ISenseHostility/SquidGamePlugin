@@ -22,8 +22,8 @@ public class SquidGameListener implements Listener {
                 if (!mayMove) {
                     if (redLightGreenLight.getActivePlayers().contains(player)) {
                         squidGameUtil.setDeathByPlugin(player, 1);
-                        player.setHealth(0);
                         redLightGreenLight.getActivePlayers().remove(player);
+                        player.setHealth(0);
                         squidGameUtil.setDeathByPlugin(player, 0);
                     }
                 }

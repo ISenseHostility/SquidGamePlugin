@@ -41,6 +41,8 @@ public class RedLightGreenLight {
         if (ongoing) {
             ongoing = false;
             activePlayers.clear();
+            bossBarTimerHandler.getBossBar().removeAll();
+            bossBarTimerHandler.getBossBarUpdateRedLightGreenLightRunnable().cancel();
         }
     }
 

@@ -73,4 +73,8 @@ public class BossBarTimerHandler {
     public BossBar getBossBar() {
         return bossBar;
     }
+
+    public BukkitRunnable getBossBarUpdateRedLightGreenLightRunnable() {
+        return bossBarUpdateRedLightGreenLightRunnable;
+    }
 }
