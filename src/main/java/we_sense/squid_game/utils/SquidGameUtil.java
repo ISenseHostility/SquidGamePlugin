@@ -3,6 +3,7 @@ package we_sense.squid_game.utils;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import org.bukkit.persistence.PersistentDataType;
+import org.bukkit.plugin.java.JavaPlugin;
 import we_sense.squid_game.SquidGame;
 
 import java.util.Random;
@@ -10,7 +11,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class SquidGameUtil {
     private final Random random = new Random();
-    private final SquidGame squidGame = SquidGame.getInstance();
+    private final SquidGame squidGame = JavaPlugin.getPlugin(SquidGame.class);
     private String[] bodyParts = {"head", "leg", "arm", "neck", "foot", "hand", "chest"};
 
     public int secondsToTicks(int seconds) {

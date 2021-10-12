@@ -1,23 +1,20 @@
 package we_sense.squid_game.handler;
 
 import org.apache.commons.lang.time.DateFormatUtils;
-import org.apache.commons.lang.time.DateUtils;
-import org.bukkit.Server;
 import org.bukkit.boss.BarColor;
 import org.bukkit.boss.BarFlag;
 import org.bukkit.boss.BarStyle;
 import org.bukkit.boss.BossBar;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 import we_sense.squid_game.SquidGame;
 import we_sense.squid_game.utils.SquidGameUtil;
 
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.concurrent.TimeUnit;
 
 public class BossBarTimerHandler {
-    private final SquidGame squidGame = SquidGame.getInstance();
+    private final SquidGame squidGame = JavaPlugin.getPlugin(SquidGame.class);
     private final SquidGameUtil squidGameUtil = new SquidGameUtil();
     private BossBar bossBar;
     private ArrayList<Player> players;
@@ -40,7 +37,6 @@ public class BossBarTimerHandler {
 
         @Override
         public void run() {
-
             for(Player player : players){
                 bossBar.addPlayer(player);
             }
@@ -64,6 +60,7 @@ public class BossBarTimerHandler {
                     for(Player player : players){
                         player.setHealth(0);
                     }
+
                     bossBarUpdateRedLightGreenLightRunnable.cancel();
                     break;
             }

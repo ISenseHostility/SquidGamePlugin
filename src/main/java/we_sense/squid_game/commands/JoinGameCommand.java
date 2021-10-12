@@ -6,9 +6,10 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import we_sense.squid_game.rlgl.RedLightGreenLight;
+import we_sense.squid_game.rlgl.RlglLocation;
 
 public class JoinGameCommand implements CommandExecutor {
-
+    private final RlglLocation rlglPosition = new RlglLocation();
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player) {
@@ -22,6 +23,7 @@ public class JoinGameCommand implements CommandExecutor {
                             if (!RLGL.isOngoing()) {
                                 if (!RLGL.getActivePlayers().contains(player)) {
                                     RLGL.getActivePlayers().add(player);
+                                    player.teleport(rlglPosition.getLobbylocation());
                                     sender.sendMessage(ChatColor.GREEN + "Joined Red Light Green Light.");
                                     return true;
                                 } else {
