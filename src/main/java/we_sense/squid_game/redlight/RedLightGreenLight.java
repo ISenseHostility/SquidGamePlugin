@@ -31,8 +31,9 @@ public class RedLightGreenLight {
 
     public void startRedLightGreenLight() {
         this.server = this.squidGame.getServer();
-        BossBarTimerHandler bossBarTimerHandler = new BossBarTimerHandler(activePlayers,120);
-        runnable.runTaskTimer(squidGame, squidGameUtil.secondsToTicks(5), squidGameUtil.secondsToTicks(squidGameUtil.randomIntBetween(5, 12)));
+        BossBarTimerHandler bossBarTimerHandler = new BossBarTimerHandler();
+        bossBarTimerHandler.startredLightGreenLightBossBar(activePlayers,120);
+        runnableTaskTimer();
         ongoing = true;
     }
 
@@ -52,6 +53,18 @@ public class RedLightGreenLight {
         }
     };
 
+    public void runnableTaskTimer() {
+            server.getScheduler().runTaskAsynchronously(squidGame, () -> {
+               while(ongoing) {
+                runnable.run();
+                try {
+                    Thread.sleep(squidGameUtil.randomIntBetween(5, 12)* 1000L);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                }
+            });
+        }
     private void sendMoveTitles(boolean mayMove, ArrayList<Player> activePlayers){
         for (Player player : activePlayers) {
             if (mayMove) {

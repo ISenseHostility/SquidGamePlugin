@@ -15,16 +15,19 @@ public class BossBarTimerHandler {
     SquidGame squidGame = SquidGame.getInstance();
 
     private BossBar bossBar;
-    private final ArrayList<Player> players;
+    private ArrayList<Player> players;
     private double currentTime;
     private double time;
-    public BossBarTimerHandler(ArrayList<Player> players, int time){
+    public BossBarTimerHandler(){
+
+    }
+
+    public void startredLightGreenLightBossBar(ArrayList<Player> players, int time){
         this.players = players;
         this.time = time;
         this.currentTime = time;
         bossBar = squidGame.getServer().createBossBar(String.valueOf(time), BarColor.GREEN, BarStyle.SEGMENTED_20, BarFlag.PLAY_BOSS_MUSIC);
         bossBarUpdateRedLightGreenLightRunnable.runTaskTimer(squidGame,0,20);
-
     }
 
     private final BukkitRunnable bossBarUpdateRedLightGreenLightRunnable = new BukkitRunnable(){
