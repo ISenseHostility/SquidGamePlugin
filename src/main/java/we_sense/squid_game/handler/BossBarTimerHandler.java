@@ -22,11 +22,12 @@ public class BossBarTimerHandler {
         this.players = players;
         this.time = time;
         this.currentTime = time;
-        bossBar = squidGame.getServer().createBossBar(String.valueOf(time), BarColor.BLUE, BarStyle.SEGMENTED_20, BarFlag.PLAY_BOSS_MUSIC);
-        bossBarUpdatRunnable.runTaskTimer(squidGame,0,20);
+        bossBar = squidGame.getServer().createBossBar(String.valueOf(time), BarColor.GREEN, BarStyle.SEGMENTED_20, BarFlag.PLAY_BOSS_MUSIC);
+        bossBarUpdateRedLightGreenLightRunnable.runTaskTimer(squidGame,0,20);
 
     }
-    private BukkitRunnable bossBarUpdatRunnable= new BukkitRunnable(){
+
+    private final BukkitRunnable bossBarUpdateRedLightGreenLightRunnable = new BukkitRunnable(){
 
         @Override
         public void run() {
@@ -39,13 +40,24 @@ public class BossBarTimerHandler {
             bossBar.setTitle(String.valueOf((int)currentTime));
             double percentage = currentTime / time;
             bossBar.setProgress(percentage);
-            if(currentTime <= 0){
-                for(Player player : players){
-                    player.setHealth(0);
-                    //todo remove killed players
-                    bossBar.removeAll();
-                    bossBarUpdatRunnable.cancel();
-                }
+            switch ((int) currentTime){
+                case 80:
+                    bossBar.setColor(BarColor.BLUE);
+                    break;
+                case 40:
+                    bossBar.setColor(BarColor.YELLOW);
+                    break;
+                case 20:
+                    bossBar.setColor(BarColor.RED);
+                    break;
+                case 0:
+                    for(Player player : players){
+                        player.setHealth(0);
+                        bossBar.removeAll();
+                        bossBarUpdateRedLightGreenLightRunnable.cancel();
+                    }
+                    break;
+
             }
         }
     };
